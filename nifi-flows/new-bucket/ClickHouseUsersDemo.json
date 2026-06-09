@@ -1,0 +1,378 @@
+{
+  "externalControllerServices" : { },
+  "flow" : {
+    "createdTimestamp" : 1781006400000,
+    "description" : "Demo flow that reads ClickHouse users through JDBC",
+    "identifier" : "ClickHouseUsersDemo",
+    "lastModifiedTimestamp" : 1781006400000,
+    "name" : "ClickHouseUsersDemo",
+    "versionCount" : 0
+  },
+  "flowContents" : {
+    "comments" : "Reads ClickHouse system.users through ExecuteSQL and logs the result statistics.",
+    "componentType" : "PROCESS_GROUP",
+    "connections" : [ {
+      "backPressureDataSizeThreshold" : "1 GB",
+      "backPressureObjectThreshold" : 10000,
+      "bends" : [ ],
+      "componentType" : "CONNECTION",
+      "destination" : {
+        "comments" : "",
+        "groupId" : "clickhouse-demo-group",
+        "id" : "3cf81c65-f54f-4205-b572-9f61d77b8e82",
+        "name" : "LogClickHouseSuccess",
+        "type" : "PROCESSOR"
+      },
+      "flowFileExpiration" : "0 sec",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "5fe95711-f1c1-481f-a162-66b65f689e7e",
+      "labelIndex" : 0,
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "name" : "ReadResults",
+      "partitioningAttribute" : "",
+      "prioritizers" : [ ],
+      "selectedRelationships" : [ "success" ],
+      "source" : {
+        "comments" : "",
+        "groupId" : "clickhouse-demo-group",
+        "id" : "d9f2d2a8-e7c7-4027-a99f-a2e66d4e7db5",
+        "name" : "ReadClickHouseUsers",
+        "type" : "PROCESSOR"
+      },
+      "zIndex" : 1
+    }, {
+      "backPressureDataSizeThreshold" : "1 GB",
+      "backPressureObjectThreshold" : 10000,
+      "bends" : [ ],
+      "componentType" : "CONNECTION",
+      "destination" : {
+        "comments" : "",
+        "groupId" : "clickhouse-demo-group",
+        "id" : "aa80959b-d17a-4e3c-8fb1-b46f89f64dd8",
+        "name" : "LogClickHouseFailure",
+        "type" : "PROCESSOR"
+      },
+      "flowFileExpiration" : "0 sec",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "bd0c4afa-4f2e-41ef-82f3-f1fb3fa4ec8d",
+      "labelIndex" : 0,
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "name" : "ReadFailure",
+      "partitioningAttribute" : "",
+      "prioritizers" : [ ],
+      "selectedRelationships" : [ "failure" ],
+      "source" : {
+        "comments" : "",
+        "groupId" : "clickhouse-demo-group",
+        "id" : "d9f2d2a8-e7c7-4027-a99f-a2e66d4e7db5",
+        "name" : "ReadClickHouseUsers",
+        "type" : "PROCESSOR"
+      },
+      "zIndex" : 2
+    } ],
+    "controllerServices" : [ {
+      "annotationData" : "",
+      "bundle" : {
+        "artifact" : "nifi-dbcp-service-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "Adjust URL, driver path, and credentials after import.",
+      "componentType" : "CONTROLLER_SERVICE",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "8c8f93af-97d8-445c-9826-b6143618f22a",
+      "name" : "ClickHouseConnectionPool",
+      "properties" : {
+        "Database Connection URL" : "jdbc:clickhouse://clickhouse:8123/default",
+        "Database Driver Class Name" : "com.clickhouse.jdbc.ClickHouseDriver",
+        "Database Driver Locations" : "/opt/nifi/drivers/clickhouse-jdbc.jar",
+        "Database User" : "demo_reader",
+        "Max Total Connections" : "8",
+        "Password" : "demo_password",
+        "Validation Query" : "SELECT 1"
+      },
+      "propertyDescriptors" : {
+        "Database Connection URL" : {
+          "displayName" : "Database Connection URL",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Database Connection URL",
+          "sensitive" : false
+        },
+        "Database Driver Class Name" : {
+          "displayName" : "Database Driver Class Name",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Database Driver Class Name",
+          "sensitive" : false
+        },
+        "Database Driver Locations" : {
+          "displayName" : "Database Driver Locations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Database Driver Locations",
+          "sensitive" : false
+        },
+        "Database User" : {
+          "displayName" : "Database User",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Database User",
+          "sensitive" : false
+        },
+        "Max Total Connections" : {
+          "displayName" : "Max Total Connections",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Max Total Connections",
+          "sensitive" : false
+        },
+        "Password" : {
+          "displayName" : "Password",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Password",
+          "sensitive" : true
+        },
+        "Validation Query" : {
+          "displayName" : "Validation Query",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Validation Query",
+          "sensitive" : false
+        }
+      },
+      "scheduledState" : "ENABLED",
+      "state" : "ENABLED",
+      "style" : { },
+      "type" : "org.apache.nifi.dbcp.DBCPConnectionPool"
+    } ],
+    "defaultBackPressureDataSizeThreshold" : "1 GB",
+    "defaultBackPressureObjectThreshold" : 10000,
+    "defaultFlowFileExpiration" : "0 sec",
+    "executionEngine" : "INHERITED",
+    "externalControllerServiceReferences" : { },
+    "flowFileConcurrency" : "UNBOUNDED",
+    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+    "funnels" : [ ],
+    "identifier" : "clickhouse-demo-group",
+    "inputPorts" : [ ],
+    "labels" : [ ],
+    "maxConcurrentTasks" : 1,
+    "name" : "ClickHouseUsersDemo",
+    "outputPorts" : [ ],
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0
+    },
+    "processGroups" : [ ],
+    "processors" : [ {
+      "autoTerminatedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-standard-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "Polls ClickHouse users and emits the result as Avro.",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "d9f2d2a8-e7c7-4027-a99f-a2e66d4e7db5",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "ReadClickHouseUsers",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : -658.0,
+        "y" : -534.0
+      },
+      "properties" : {
+        "Database Connection Pooling Service" : "8c8f93af-97d8-445c-9826-b6143618f22a",
+        "Fetch Size" : "100",
+        "Normalize Table and Column Names" : "true",
+        "Set Auto Commit" : "true",
+        "SQL Query" : "SELECT name, storage, auth_type FROM system.users LIMIT 10"
+      },
+      "propertyDescriptors" : {
+        "Database Connection Pooling Service" : {
+          "displayName" : "Database Connection Pooling Service",
+          "dynamic" : false,
+          "identifiesControllerService" : true,
+          "name" : "Database Connection Pooling Service",
+          "sensitive" : false
+        },
+        "Fetch Size" : {
+          "displayName" : "Fetch Size",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Fetch Size",
+          "sensitive" : false
+        },
+        "Normalize Table and Column Names" : {
+          "displayName" : "Normalize Table and Column Names",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Normalize Table and Column Names",
+          "sensitive" : false
+        },
+        "Set Auto Commit" : {
+          "displayName" : "Set Auto Commit",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Set Auto Commit",
+          "sensitive" : false
+        },
+        "SQL Query" : {
+          "displayName" : "SQL Query",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "SQL Query",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 0,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "1 min",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.standard.ExecuteSQL",
+      "yieldDuration" : "1 sec"
+    }, {
+      "autoTerminatedRelationships" : [ "success" ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-standard-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "Logs query metrics after a successful ClickHouse read.",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "3cf81c65-f54f-4205-b572-9f61d77b8e82",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "LogClickHouseSuccess",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : -297.0,
+        "y" : -615.0
+      },
+      "properties" : {
+        "log-level" : "info",
+        "log-message" : "ClickHouse query returned ${executesql.row.count} rows in ${executesql.query.duration} ms",
+        "log-prefix" : "clickhouse-demo"
+      },
+      "propertyDescriptors" : {
+        "log-message" : {
+          "displayName" : "Log message",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-message",
+          "sensitive" : false
+        },
+        "log-level" : {
+          "displayName" : "Log Level",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-level",
+          "sensitive" : false
+        },
+        "log-prefix" : {
+          "displayName" : "Log prefix",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-prefix",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 0,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.standard.LogMessage",
+      "yieldDuration" : "1 sec"
+    }, {
+      "autoTerminatedRelationships" : [ "success" ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-standard-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "Logs the error message when the ClickHouse query fails.",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "clickhouse-demo-group",
+      "identifier" : "aa80959b-d17a-4e3c-8fb1-b46f89f64dd8",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "LogClickHouseFailure",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : -293.0,
+        "y" : -454.0
+      },
+      "properties" : {
+        "log-level" : "error",
+        "log-message" : "ClickHouse read failed: ${executesql.error.message}",
+        "log-prefix" : "clickhouse-demo"
+      },
+      "propertyDescriptors" : {
+        "log-message" : {
+          "displayName" : "Log message",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-message",
+          "sensitive" : false
+        },
+        "log-level" : {
+          "displayName" : "Log Level",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-level",
+          "sensitive" : false
+        },
+        "log-prefix" : {
+          "displayName" : "Log prefix",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-prefix",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 0,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.standard.LogMessage",
+      "yieldDuration" : "1 sec"
+    } ],
+    "remoteProcessGroups" : [ ],
+    "scheduledState" : "ENABLED",
+    "statelessFlowTimeout" : "1 min"
+  },
+  "flowEncodingVersion" : "1.0",
+  "latest" : false,
+  "parameterContexts" : { },
+  "parameterProviders" : { },
+  "snapshotMetadata" : {
+    "author" : "copilot",
+    "flowIdentifier" : "ClickHouseUsersDemo",
+    "timestamp" : 1781006400000
+  }
+}

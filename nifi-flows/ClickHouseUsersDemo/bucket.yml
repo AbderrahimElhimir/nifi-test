@@ -1,0 +1,7 @@
+identifier: ClickHouseUsersDemo
+name: ClickHouseUsersDemo
+description: Demo NiFi flow that reads ClickHouse users through JDBC
+created: 2026-06-09T12:00:00Zidentifier: ClickHouseUsersDemo
+name: ClickHouseUsersDemo
+description: Demo NiFi bucket for reading ClickHouse system users over JDBC
+created: 2026-06-09T12:00:00Z
