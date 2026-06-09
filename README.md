@@ -16,11 +16,15 @@ The demo flow contains:
 
 Before importing the flow in NiFi, adjust these properties on the `ClickHouseConnectionPool` controller service:
 
-- `Database Connection URL`: example `jdbc:clickhouse://clickhouse:8123/default`
+- `Database Connection URL`: `jdbc:ch://clickhouse-install.clickhouse:8123/default`
 - `Database Driver Class Name`: `com.clickhouse.jdbc.ClickHouseDriver`
 - `Database Driver Locations`: path to the ClickHouse JDBC jar, for example `/opt/nifi/drivers/clickhouse-jdbc.jar`
 - `Database User`: demo value is `demo_reader`
 - `Password`: demo value is `demo_password`
+
+Example download source for the jar:
+
+- `https://repo1.maven.org/maven2/com/clickhouse/clickhouse-jdbc/0.4.6/clickhouse-jdbc-0.4.6-all.jar`
 
 The default query is:
 

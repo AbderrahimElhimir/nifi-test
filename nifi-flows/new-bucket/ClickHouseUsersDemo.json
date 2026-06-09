@@ -85,7 +85,7 @@
       "identifier" : "8c8f93af-97d8-445c-9826-b6143618f22a",
       "name" : "ClickHouseConnectionPool",
       "properties" : {
-        "Database Connection URL" : "jdbc:clickhouse://clickhouse:8123/default",
+        "Database Connection URL" : "jdbc:ch://clickhouse-install.clickhouse:8123/default",
         "Database Driver Class Name" : "com.clickhouse.jdbc.ClickHouseDriver",
         "Database Driver Locations" : "/opt/nifi/drivers/clickhouse-jdbc.jar",
         "Database User" : "demo_reader",
