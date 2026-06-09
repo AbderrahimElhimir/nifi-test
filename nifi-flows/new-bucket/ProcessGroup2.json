@@ -1,0 +1,390 @@
+{
+  "externalControllerServices" : { },
+  "flow" : {
+    "createdTimestamp" : 1759176455843,
+    "description" : "",
+    "identifier" : "ProcessGroup2",
+    "lastModifiedTimestamp" : 1759176455843,
+    "name" : "ProcessGroup2",
+    "versionCount" : 0
+  },
+  "flowContents" : {
+    "comments" : "",
+    "componentType" : "PROCESS_GROUP",
+    "connections" : [ {
+      "backPressureDataSizeThreshold" : "1 GB",
+      "backPressureObjectThreshold" : 10000,
+      "bends" : [ ],
+      "componentType" : "CONNECTION",
+      "destination" : {
+        "comments" : "",
+        "groupId" : "flow-contents-group",
+        "id" : "8a5a539e-9529-3418-b813-dc948000061a",
+        "name" : "DebugFlow1",
+        "type" : "PROCESSOR"
+      },
+      "flowFileExpiration" : "0 sec",
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "ae5a51e3-7132-3ab3-8cc5-213b85c62255",
+      "labelIndex" : 0,
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "name" : "Connection1",
+      "partitioningAttribute" : "",
+      "prioritizers" : [ ],
+      "selectedRelationships" : [ "" ],
+      "source" : {
+        "groupId" : "flow-contents-group",
+        "id" : "0e0a0b7a-05dd-30e3-9cc5-853ccd79c365",
+        "name" : "InputPort1",
+        "type" : "INPUT_PORT"
+      },
+      "zIndex" : 1
+    }, {
+      "backPressureDataSizeThreshold" : "1 GB",
+      "backPressureObjectThreshold" : 10000,
+      "bends" : [ ],
+      "componentType" : "CONNECTION",
+      "destination" : {
+        "comments" : "",
+        "groupId" : "flow-contents-group",
+        "id" : "013435a5-c003-3e32-aa3a-e47ef26c8db7",
+        "name" : "LogMessage1",
+        "type" : "PROCESSOR"
+      },
+      "flowFileExpiration" : "0 sec",
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "e2dfc22b-c3a6-3310-a544-00c5bcb5ad2b",
+      "labelIndex" : 0,
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "name" : "Connection2",
+      "partitioningAttribute" : "",
+      "prioritizers" : [ ],
+      "selectedRelationships" : [ "success" ],
+      "source" : {
+        "comments" : "",
+        "groupId" : "flow-contents-group",
+        "id" : "8a5a539e-9529-3418-b813-dc948000061a",
+        "name" : "DebugFlow1",
+        "type" : "PROCESSOR"
+      },
+      "zIndex" : 2
+    } ],
+    "controllerServices" : [ ],
+    "defaultBackPressureDataSizeThreshold" : "1 GB",
+    "defaultBackPressureObjectThreshold" : 10000,
+    "defaultFlowFileExpiration" : "0 sec",
+    "executionEngine" : "INHERITED",
+    "externalControllerServiceReferences" : { },
+    "flowFileConcurrency" : "UNBOUNDED",
+    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+    "funnels" : [ ],
+    "identifier" : "flow-contents-group",
+    "inputPorts" : [ {
+      "allowRemoteAccess" : false,
+      "componentType" : "INPUT_PORT",
+      "concurrentlySchedulableTaskCount" : 1,
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "0e0a0b7a-05dd-30e3-9cc5-853ccd79c365",
+      "name" : "InputPort1",
+      "portFunction" : "STANDARD",
+      "position" : {
+        "x" : -627.0,
+        "y" : -618.0
+      },
+      "scheduledState" : "ENABLED",
+      "type" : "INPUT_PORT"
+    } ],
+    "labels" : [ ],
+    "maxConcurrentTasks" : 1,
+    "name" : "ProcessGroup2",
+    "outputPorts" : [ ],
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0
+    },
+    "processGroups" : [ ],
+    "processors" : [ {
+      "autoTerminatedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-standard-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "013435a5-c003-3e32-aa3a-e47ef26c8db7",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "LogMessage1",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : -624.0,
+        "y" : -392.0
+      },
+      "properties" : {
+        "log-level" : "warning"
+      },
+      "propertyDescriptors" : {
+        "log-message" : {
+          "displayName" : "Log message",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-message",
+          "sensitive" : false
+        },
+        "log-level" : {
+          "displayName" : "Log Level",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-level",
+          "sensitive" : false
+        },
+        "log-prefix" : {
+          "displayName" : "Log prefix",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "log-prefix",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 25,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.standard.LogMessage",
+      "yieldDuration" : "1 sec"
+    }, {
+      "autoTerminatedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-standard-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.6.0"
+      },
+      "comments" : "",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "8a5a539e-9529-3418-b813-dc948000061a",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "DebugFlow1",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : -624.0,
+        "y" : -544.0
+      },
+      "properties" : {
+        "Write Iterations" : "0",
+        "No FlowFile Skip Iterations" : "1",
+        "No FlowFile Exception Iterations" : "0",
+        "Fail When @OnUnscheduled called" : "false",
+        "No FlowFile Yield Iterations" : "0",
+        "FlowFile Failure Iterations" : "0",
+        "CustomValidate Pause Time" : "0 sec",
+        "@OnScheduled Pause Time" : "0 sec",
+        "Fail When @OnStopped called" : "false",
+        "FlowFile Rollback Penalty Iterations" : "0",
+        "Content Size" : "1 KB",
+        "FlowFile Rollback Yield Iterations" : "0",
+        "FlowFile Rollback Iterations" : "0",
+        "No FlowFile Exception Class" : "java.lang.RuntimeException",
+        "Ignore Interrupts When Paused" : "false",
+        "Fail When @OnScheduled called" : "false",
+        "@OnUnscheduled Pause Time" : "0 sec",
+        "FlowFile Exception Iterations" : "0",
+        "FlowFile Success Iterations" : "1",
+        "@OnStopped Pause Time" : "0 sec",
+        "FlowFile Exception Class" : "java.lang.RuntimeException",
+        "OnTrigger Pause Time" : "0 sec"
+      },
+      "propertyDescriptors" : {
+        "Write Iterations" : {
+          "displayName" : "Write Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Write Iterations",
+          "sensitive" : false
+        },
+        "No FlowFile Skip Iterations" : {
+          "displayName" : "No FlowFile Skip Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "No FlowFile Skip Iterations",
+          "sensitive" : false
+        },
+        "No FlowFile Exception Iterations" : {
+          "displayName" : "No FlowFile Exception Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "No FlowFile Exception Iterations",
+          "sensitive" : false
+        },
+        "Fail When @OnUnscheduled called" : {
+          "displayName" : "Fail When @OnUnscheduled called",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Fail When @OnUnscheduled called",
+          "sensitive" : false
+        },
+        "No FlowFile Yield Iterations" : {
+          "displayName" : "No FlowFile Yield Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "No FlowFile Yield Iterations",
+          "sensitive" : false
+        },
+        "FlowFile Failure Iterations" : {
+          "displayName" : "FlowFile Failure Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Failure Iterations",
+          "sensitive" : false
+        },
+        "CustomValidate Pause Time" : {
+          "displayName" : "CustomValidate Pause Time",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "CustomValidate Pause Time",
+          "sensitive" : false
+        },
+        "@OnScheduled Pause Time" : {
+          "displayName" : "@OnScheduled Pause Time",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "@OnScheduled Pause Time",
+          "sensitive" : false
+        },
+        "Fail When @OnStopped called" : {
+          "displayName" : "Fail When @OnStopped called",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Fail When @OnStopped called",
+          "sensitive" : false
+        },
+        "FlowFile Rollback Penalty Iterations" : {
+          "displayName" : "FlowFile Rollback Penalty Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Rollback Penalty Iterations",
+          "sensitive" : false
+        },
+        "Content Size" : {
+          "displayName" : "Content Size",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Content Size",
+          "sensitive" : false
+        },
+        "FlowFile Rollback Yield Iterations" : {
+          "displayName" : "FlowFile Rollback Yield Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Rollback Yield Iterations",
+          "sensitive" : false
+        },
+        "FlowFile Rollback Iterations" : {
+          "displayName" : "FlowFile Rollback Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Rollback Iterations",
+          "sensitive" : false
+        },
+        "No FlowFile Exception Class" : {
+          "displayName" : "No FlowFile Exception Class",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "No FlowFile Exception Class",
+          "sensitive" : false
+        },
+        "Ignore Interrupts When Paused" : {
+          "displayName" : "Ignore Interrupts When Paused",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Ignore Interrupts When Paused",
+          "sensitive" : false
+        },
+        "Fail When @OnScheduled called" : {
+          "displayName" : "Fail When @OnScheduled called",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Fail When @OnScheduled called",
+          "sensitive" : false
+        },
+        "@OnUnscheduled Pause Time" : {
+          "displayName" : "@OnUnscheduled Pause Time",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "@OnUnscheduled Pause Time",
+          "sensitive" : false
+        },
+        "FlowFile Exception Iterations" : {
+          "displayName" : "FlowFile Exception Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Exception Iterations",
+          "sensitive" : false
+        },
+        "FlowFile Success Iterations" : {
+          "displayName" : "FlowFile Success Iterations",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Success Iterations",
+          "sensitive" : false
+        },
+        "@OnStopped Pause Time" : {
+          "displayName" : "@OnStopped Pause Time",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "@OnStopped Pause Time",
+          "sensitive" : false
+        },
+        "FlowFile Exception Class" : {
+          "displayName" : "FlowFile Exception Class",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "FlowFile Exception Class",
+          "sensitive" : false
+        },
+        "OnTrigger Pause Time" : {
+          "displayName" : "OnTrigger Pause Time",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "OnTrigger Pause Time",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 0,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.standard.DebugFlow",
+      "yieldDuration" : "1 sec"
+    } ],
+    "remoteProcessGroups" : [ ],
+    "scheduledState" : "ENABLED",
+    "statelessFlowTimeout" : "1 min"
+  },
+  "flowEncodingVersion" : "1.0",
+  "latest" : false,
+  "parameterContexts" : { },
+  "parameterProviders" : { },
+  "snapshotMetadata" : {
+    "author" : "nifi",
+    "flowIdentifier" : "ProcessGroup2",
+    "timestamp" : 1759177935341
+  }
+}
